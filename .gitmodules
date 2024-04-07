@@ -1,0 +1,6 @@
+[submodule "belajar-golang-modules/go-say-hello"]
+	path = belajar-golang-modules/go-say-hello
+	url = https://github.com/harmonify/go-say-hello
+[submodule "belajar-golang-modules/app-say-hello"]
+	path = belajar-golang-modules/app-say-hello
+	url = https://github.com/harmonify/app-say-hello
