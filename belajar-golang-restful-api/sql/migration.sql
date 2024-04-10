@@ -1,0 +1,6 @@
+CREATE DATABASE belajar_golang_restful_api;
+
+CREATE TABLE category (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL
+) ENGINE = InnoDB;
