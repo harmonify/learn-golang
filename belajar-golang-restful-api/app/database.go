@@ -17,8 +17,20 @@ func ConstructDataSourceName(
 	return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true", username, password, host, port, database)
 }
 
-func NewDB() *sql.DB {
-	dataSourceName := ConstructDataSourceName("localhost", 3306, "belajar_golang_restful_api", "root", "")
+func NewDB(
+	host string,
+	port int,
+	database string,
+	username string,
+	password string,
+) *sql.DB {
+	dataSourceName := ConstructDataSourceName(
+		host,
+		port,
+		database,
+		username,
+		password,
+	)
 
 	db, err := sql.Open("mysql", dataSourceName)
 	helper.PanicIfError(err)
