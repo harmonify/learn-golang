@@ -7,14 +7,18 @@ import (
 	"belajar-golang-restful-api/repository"
 	"context"
 	"database/sql"
+	"github.com/go-playground/validator"
 )
 
 type CategoryServiceImpl struct {
 	repository.CategoryRepository
 	*sql.DB
+	*validator.Validate
 }
 
 func (s *CategoryServiceImpl) Create(ctx context.Context, request web.CategoryCreateRequest) web.CategoryResponse {
+	helper.PanicIfError(s.Validate.Struct(request))
+
 	tx, err := s.DB.Begin()
 	helper.PanicIfError(err)
 	defer helper.CommitOrRollback(tx)
@@ -29,6 +33,8 @@ func (s *CategoryServiceImpl) Create(ctx context.Context, request web.CategoryCr
 }
 
 func (s *CategoryServiceImpl) Update(ctx context.Context, request web.CategoryUpdateRequest) web.CategoryResponse {
+	helper.PanicIfError(s.Validate.Struct(request))
+
 	tx, err := s.DB.Begin()
 	helper.PanicIfError(err)
 	defer helper.CommitOrRollback(tx)
